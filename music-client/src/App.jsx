@@ -1,0 +1,38 @@
+import { Routes, Route, BrowserRouter } from "react-router-dom"
+
+import { SearchBar, SideBar,  TopPlay } from './components'
+import { ArtistDetails, TopArtists, AroundYou, Discover, Search, SongDetails, TopCharts } from "./pages"
+
+
+
+const App = () => {
+  return (
+    <div className="relative flex">
+      <SideBar/>
+      <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
+        <SearchBar/>
+        <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
+          <div className="flex-1 h-fit pb-40">
+            <BrowserRouter>
+              <Routes>
+                <Route path="/"  element={<Discover/>} />
+                <Route path="/top-artists" element={<TopArtists/>}/>
+                <Route path="/top-charts" element={<TopCharts/>}/>
+                <Route path="/around-you" element={<AroundYou/>}/>
+                <Route path="/artists/:id" element={<ArtistDetails/>}/>
+                <Route path="/song/:songid" element={<SongDetails/>}/>
+                <Route path="/search/:searchTerm" element={<Search/>}/>
+              </Routes>
+            </BrowserRouter>
+          </div>
+          <div className="xl:sticky relative top-0 h-fit">
+            <TopPlay/>
+          </div>
+        </div>
+      </div>
+      {}
+    </div>
+  )
+}
+
+export default App
